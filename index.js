@@ -1,6 +1,6 @@
 // Players score variables
 let computerScore = 0;
-let humanScore = 0;
+let humanScore = 0
 
 // Create getComputerChoice function
 function getComputerChoice() {
@@ -29,55 +29,74 @@ function getHumanChoice() {
 }
 
 // Create playRound function that take the computer and human choice as parameters
-function playRound(computerSelection, humanSelection) {
+const playRound = function (computerSelection, humanSelection) {
     // Create a switch statement for all the possible cases
     switch (`${computerSelection}-${humanSelection}`) {
         case "ROCK-SCISSORS":
-            computerScore++
+            computerScore++;
             console.log(`Computer selection was: ${computerSelection} | Human selection was: ${humanSelection}`);
             console.log(`The computer wins this round. Score = Computer: ${computerScore} and Human: ${humanScore}`);
-            break;
+            return;
 
         case "PAPER-ROCK":
             computerScore++
             console.log(`Computer selection was: ${computerSelection} | Human selection was: ${humanSelection}`);
             console.log(`The computer wins this round. Score = Computer: ${computerScore} and Human: ${humanScore}`);
-            break;
+            return;
 
         case "SCISSORS-PAPER":
             computerScore++
             console.log(`Computer selection was: ${computerSelection} | Human selection was: ${humanSelection}`);
             console.log(`The computer wins this round. Score = Computer: ${computerScore} and Human: ${humanScore}`);
-            break;
+            return;
 
         case "SCISSORS-ROCK":
             humanScore++
             console.log(`Human selection was: ${humanSelection} | Computer selection was: ${computerSelection}`);
             console.log(`The human wins this round. Score = Human: ${humanScore} and Computer: ${computerScore}`);
-            break;
+            return;
 
         case "ROCK-PAPER":
             humanScore++
             console.log(`Human selection was: ${humanSelection} | Computer selection was: ${computerSelection}`);
             console.log(`The human wins this round. Score = Human: ${humanScore} and Computer: ${computerScore}`);
-            break;
+            return;
 
         case "PAPER-SCISSORS":
             humanScore++
             console.log(`Human selection was: ${humanSelection} | Computer selection was: ${computerSelection}`);
             console.log(`The human wins this round. Score = Human: ${humanScore} and Computer: ${computerScore}`);
-            break;
+            return;
     
         default:
             console.log(`Human selection was: ${humanSelection} | Computer selection was: ${computerSelection}`);
             console.log(`This round was a tie! Score = Human: ${humanScore} and Computer: ${computerScore}`);
-            break;
+            return;
     // End the statement
     }
 // End the function 
 }
 
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
+// Create playGame function that play 5 rounds
+function playGame(numberOfRounds) {
+    // Loop through the game 5 times
+    for (let rounds = 0; rounds < numberOfRounds; rounds++) {
+        console.log(`Round ${rounds + 1}`);
+        // Call the playRound function
+        const computerSelection = getComputerChoice();
+        const humanSelection = getHumanChoice();  
+        playRound(computerSelection, humanSelection);
+    }
+    // If statement for the highest score
+    if (computerScore > humanScore) {
+        console.log("Computer Wins!")
+    } else if (humanScore > computerScore) {
+        console.log("Human Wins!")
+    } else {
+        console.log("It's a tie!");
+    }
+// End the function
+}
 
-playRound(computerSelection, humanSelection);
+let numberOfRounds = prompt("How many rounds do you want to play?");
+playGame(numberOfRounds); 
